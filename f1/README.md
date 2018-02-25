@@ -38,3 +38,17 @@ Finally, the `sizeof` of `hello`. The variable was declared as a char pointer, t
 
 ## c)
 On both cases, the sizeof is getting an element of the array. `a` is an array of integers, so any element uses 4 bytes. `hello` is a pointer to an array of chars (C-string), `*hello` is accessing the first character, therefore `sizeof` returns 1 byte.
+
+# Ex 4
+`atoi` and `strtol` try to achieve the same thing: converting a number represented as string to an int/long data type.
+
+The difference is how they handle strings that not represent a number at all.
+
+## atoi
+If you give a string which the initial portion is a number, atoi returns that number.
+`atoi("123sdafeger") => 123`
+However, if the string doesn't have a number at all, it returns 0.
+`atoi("asfsfsf") => 0.` and `atoi("0") => 0`. So, how you distinguish? You don't ¯\\_(ツ)_/¯. Unless, you do some extra verification. Oh,what about a number between alfa-characters? Also returns zero.
+## strtol
+`strtol` is fancier. Well, it also returns zero if things go wrong... but there's an extra parameter, `char **endptr`, that stores the address of the first invalid character. If you do some comparations here and there you can know if the input is invalid or not. Moreover, you can reach digits between characters with succesive calls, using the `endptr`. And finally, `strtol` supports errors. You can detect overflows, underflows and if there's no coversion at all (not working for me, ¯\\_(ツ)_/¯, but it's mentiond on the standard documentation. There's a note saying this is not valid on C99, but doesn't say anything about more recent standards).
+>  The implementation may also set errno to EINVAL in case no conversion was performed (no  digits  seen,  and  0 returned).
