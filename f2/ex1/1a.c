@@ -41,4 +41,6 @@ int main(int argc, char** argv) {
     printf("\n\nFile length: %d\n", length);
 
     close(fd);
+
+    return 0;
 }
