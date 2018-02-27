@@ -25,16 +25,20 @@ int main(int argc, char** argv) {
     while((ret = read(fd, buffer, 64)) != 0) {
         // read returns 0 when there are no more bytes to read (and other particular cases)
         // read returns -1 on error
+        // read returns the number of bytes read
         if(ret == -1) {
             perror(NULL);
             exit(3);
         }
 
         length += ret; // read bytes
-        write(STDOUT_FILENO, buffer, ret);
+        if(write(STDOUT_FILENO, buffer, ret) == -1) {
+            perror(NULL);
+            exit(4);
+        }
     }
 
-    printf("\nFile length: %d\n", length);
+    printf("\n\nFile length: %d\n", length);
 
     close(fd);
 }
