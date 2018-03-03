@@ -1,3 +1,10 @@
+/**
+ * @brief Write a program that creates a process that compiles a C program whose name is passed on its command line. IMP.: Your program should execute gcc (/usr/bin/gcc), by invoking the execve() system call with appropriate arguments. The parent should wait for the termination of its child.
+ * 
+ * @file 4.c
+ * @author Fábio Gaspar
+ * @date 2018-03-03
+ */
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
