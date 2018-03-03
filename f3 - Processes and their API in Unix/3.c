@@ -13,7 +13,9 @@
 #include <sys/wait.h>
 
 int main(void) {
+    // NOTE: For simplification I didn't checked return values from sys calls.. but I should
 
+    
     // Create child
     pid_t p1 = fork();
 
